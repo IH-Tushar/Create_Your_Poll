@@ -3,36 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>create new poll</title>
+    <title>Create New Poll</title>
 </head>
 <body>
-    <div class="cointainer">
+    <div class="container">
         <div class="row">
             <div class=""> 
                 <div class="card">
-                    <h4>create A new poll</h4>
+                    <h4>Create A New Poll</h4>
                     <form action="/create" method="POST">
                         <div class="form-group">
                             <label for="title">Enter Title</label>
                             <input type="text" name="title" id="title" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="description">Enter  Description</label>
-                            <textarea name="description" id=" description" class="form-control "></textarea>
+                            <label for="description">Enter Description</label>
+                            <textarea name="description" id="description" class="form-control"></textarea>
                         </div>
                         <div id="options">
-                            <p>enter your options</p>
+                            <p>Enter your options</p>
                             <div class="form-group">
-                                <input type="text" name="option1" id="options" class="form-control" placeholder="option 1">
+                                <input type="text" name="options" class="form-control" placeholder="Option 1">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="option2" id="options" class="form-control" placeholder="option 2">
+                                <input type="text" name="options" class="form-control" placeholder="Option 2">
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-sm" id="addOption">
-                            add more options
+                        <button class="btn btn-scondary btn-sm" id="addOption">
+                            Add More Options
                         </button>
-                        <input type="submit" class="btn btn-primary" value="create poll">
+                        <input type="submit" class="btn btn-primary" value="Create Poll">
                     </form>
                 </div>     
             </div>
@@ -44,27 +44,25 @@
 
         let currentOptionNumber = 3;
 
-        addOption.addEventListener('click', (e) => {
-            e.preventDefault()
-            let option = createNewOption()
-            options.appendChild(option)
-        })
+        addOption.addEventListener('click', function(e) {
+            e.preventDefault();
+            let option = createNewOption();
+            options.appendChild(option);
+        });
 
         function createNewOption() {
-            let div = document.createElement('div')
-                div.className = 'form-group'
+            let div = document.createElement('div');
+            div.className = 'form-group';
 
-                let input = document.createElement('input')
-                input.type = 'text'
-                input.name = 'options'
-                input.placeholder = 'Option' + currentOptionNumber++;
-                input.className = 'form-control'
+            let input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'options'; 
+            input.placeholder = 'Option ' + currentOptionNumber++;
+            input.className = 'form-control';
 
-                div.appendChild(input);
-                return div;
+            div.appendChild(input);
+            return div;
         }
     </script>
 </body>
 </html>
-
-

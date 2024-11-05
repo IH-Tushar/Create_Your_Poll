@@ -1,18 +1,21 @@
-const{ schema, model } = require('mongoose')
+const{ schema, model , Schema } = require('mongoose')
 
-const pollschema = new schema({
+const pollschema = new Schema({
     title:{
         type:String,
-        require:true,
+        required:true,
         trim:true
     },
 description:{
-    title:String,
-    require:true,
+    type:String,
+    required:true,
     trim:true
 },
-totalVote: Number,
-    Option:{
+totalVote: {
+    type: Number,
+    default: 0
+},
+    options:{
         type:[{
             name:String,
             vote:Number
