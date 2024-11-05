@@ -23,9 +23,9 @@ app.get('/polls/:id', pollController.viewPollGetController);
 app.post('/polls/:id', pollController.viewPollPostController);
 app.get('/polls', pollController.getAllPolls);
 
-mongoose.connect('mongodb://127.0.0.1:27017/Express')
+mongoose.connect('mongodb://127.0.0.1:27017/Express_JS')
     .then( () => {
-        app.listen(4545, () => {
+        app.listen(3000, () => {
             console.log('listening on port 4545')
         })
     })
