@@ -54,63 +54,30 @@ exports.viewPollGetController = async (req,res,next) => {
     }
 }
 
-// exports.viewPollPostController = async (req,res,next) => {
-//     let id = req.params.id
-//     let optionId = req.body.option
+exports.viewPollPostController = async (req,res,next) => {
+    let id = req.params.id
+    let optionId = req.body.option
     
-    
-//     try {
-//         let poll = await Poll.findById(id)
-//         let options = [...poll.options]
-
-//         let index = options.findIndex(opt => opt.id == optionId)
-//         options[index].vote = options[index].vote + 1
-
-//         let totalVote = poll.totalVote + 1
-        
-//         await poll.findOneAndUpdate(
-//             {_id: poll._id},
-//             {$set: {options, totalVote}}
-//         )
-        
-//         res.redirect('/polls/' + id)
-//     }
-//     catch (e) {
-//         console.log(e);
-        
-//     }
-// }
-
-exports.viewPollPostController = async (req, res, next) => {
-    let id = req.params.id;
-    let optionId = req.body.option;
     
     try {
-        // Find the poll document by ID
-        let poll = await Poll.findById(id);
-        
-        if (!poll) {
-            return res.status(404).send("Poll not found");
-        }
-        
-        // Update the vote count for the selected option
-        const optionIndex = poll.options.findIndex(opt => opt._id.toString() === optionId);
-        if (optionIndex === -1) {
-            return res.status(404).send("Option not found");
-        }
-        
-        poll.options[optionIndex].vote += 1;
-        poll.totalVote += 1;
+        let poll = await Poll.findById(id)
+        let options = [...poll.options]
 
-        // Use Poll model to update the document
-        await Poll.findOneAndUpdate(
-            { _id: id },
-            { $set: { options: poll.options, totalVote: poll.totalVote } }
-        );
+        let index = options.findIndex(o => o.id == optionId)
+        options[index].vote = options[index].vote + 1
+
+        let totalVote = poll.totalVote + 1
         
-        res.redirect(`/polls/${id}`);
-    } catch (e) {
-        console.log(e);
-        res.status(500).send("Server error");
+        await Poll.findOneAndUpdate(
+            {_id: poll._id},
+            {$set: {options, totalVote}}
+        )
+        
+        res.redirect('/polls/' + id)
     }
-};
+    catch (e) {
+        console.log(e);
+        
+    }
+}
+
