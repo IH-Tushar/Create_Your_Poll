@@ -21,7 +21,7 @@
                     <ul class="list-group">
                         <% for(let r of result) { %>
                             <li class="list-group-item">
-                                <%= r.name %> ---> <strong> <%= r.percentage %> % </strong>
+                                <%= r.name %> ---> <strong> <%= r.percentage.toFixed(2) %> % </strong>
                             </li>
                         <% } %>
                     </ul>
