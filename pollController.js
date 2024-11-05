@@ -4,7 +4,7 @@ exports.createPollGetcontroller = (req,res,next) => {
     res.render('create');
 }
 
-exports.createPollPostcontroller =  (req,res,next) => {
+exports.createPollPostcontroller = async (req,res,next) => {
     console.log(req.body);
     
     let { title,description,options } = req.body
@@ -15,7 +15,8 @@ exports.createPollPostcontroller =  (req,res,next) => {
             vote: 0
         }
     })
-
+        console.log(options);
+        
     let poll = new Poll(
         {
            title,
@@ -24,7 +25,7 @@ exports.createPollPostcontroller =  (req,res,next) => {
         }
     )    
     try {
-         poll.save()
+        await poll.save()
         res.redirect('/polls')
     } catch (e) {
         console.log(e);
