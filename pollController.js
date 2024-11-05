@@ -33,3 +33,13 @@ exports.createPollPostcontroller = async (req,res,next) => {
     }
 
 }
+
+exports.getAllPolls = async (req,res,next) => {
+    try {
+        const polls = await Poll.find()
+        res.render('polls', {polls})
+    } catch (e) {
+        console.log(e);
+        
+    }
+}

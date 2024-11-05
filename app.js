@@ -19,7 +19,9 @@ app.get('/', (req, res)=> {
 app.get('/create', pollController.createPollGetcontroller);
 app.post('/create', pollController.createPollPostcontroller);
 
-mongoose.connect('mongodb://127.0.0.1:27017/test')
+app.get('/polls', pollController.getAllPolls);
+
+mongoose.connect('mongodb://127.0.0.1:27017/Express')
     .then( () => {
         app.listen(4545, () => {
             console.log('listening on port 4545')
